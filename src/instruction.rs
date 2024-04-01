@@ -3,21 +3,21 @@ use solana_program::{program_error::ProgramError, pubkey::Pubkey};
 
 pub enum NotepadInstruction {
     NoteCreate {
-        title: &str,
-        body: &str,
+        title: String,
+        body: String,
         pubkey: Pubkey,
     },
     NoteUpdate {
-        title: &str,
-        body: &str,
+        title: String,
+        body: String,
     },
     NoteDelete,
 }
 
 #[derive(BorshDeserialize)]
 struct NotepadInstructionPayload {
-    title: &str,
-    body: &str,
+    title: String,
+    body: String,
     pubkey: Pubkey,
 }
 

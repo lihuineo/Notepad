@@ -5,8 +5,8 @@ use solana_program::pubkey::Pubkey;
 
 pub struct NotepadAccountState {
     pub pubkey: Pubkey,
-    pub title: &str,
-    pub body: &str,
+    pub title: String,
+    pub body: String,
 }
 
 impl NotepadAccountState {
