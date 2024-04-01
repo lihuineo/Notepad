@@ -4,11 +4,11 @@ use thiserror::Error;
 #[derive(Debug, Error)]
 
 pub enum NotepadError {
-    #[error("Notepad title exceeds max len!")]
+    #[error("Notepad: input title exceeds max len!")]
     InvalidTitleLen,
-    #[error("Notepad body exceeds max len!")]
+    #[error("Notepad: input body exceeds max len!")]
     InvalidBodyLen,
-    #[error("Notepad invalid public key!")]
+    #[error("Notepad: invalid public key!")]
     InvalidPubkey,
 }
 
