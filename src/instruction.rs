@@ -1,6 +1,16 @@
-use borsh::BorshDeserialize;
+use borsh::{BorshDeserialize, BorshSerialize};
 use solana_program::{program_error::ProgramError, pubkey::Pubkey};
 
+#[derive(BorshDeserialize, BorshSerialize)]
+pub struct NotepadInstructionPayload {
+    title: String,
+    body: String,
+    pubkey: Pubkey,
+}
+
+impl NotepadInstructionPayload {}
+
+#[derive(BorshDeserialize, BorshSerialize)]
 pub enum NotepadInstruction {
     NoteCreate {
         title: String,
@@ -12,13 +22,6 @@ pub enum NotepadInstruction {
         body: String,
     },
     NoteDelete,
-}
-
-#[derive(BorshDeserialize)]
-struct NotepadInstructionPayload {
-    title: String,
-    body: String,
-    pubkey: Pubkey,
 }
 
 impl NotepadInstruction {
@@ -45,5 +48,31 @@ impl NotepadInstruction {
             2 => Self::NoteDelete,
             _ => return Err(ProgramError::InvalidInstructionData),
         })
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::{NotepadInstruction, NotepadInstructionPayload};
+    use borsh::BorshSerialize;
+    use solana_program::pubkey;
+    use std::str::FromStr;
+
+    #[test]
+    fn unpack_test() {
+        let mut input: Vec<u8> = Vec::new();
+        input.push(0u8);
+
+        let mut payload = NotepadInstructionPayload {
+            title: String::from("first input"),
+            body: String::from("wo"),
+            pubkey: pubkey::Pubkey::from_str("666c9Vw6FsjbRhxsVeC4kFR5jQQPqZip9CNMw1ivAGb1")
+                .unwrap(),
+        };
+
+        payload.serialize(&mut input).unwrap();
+
+        let ins = NotepadInstruction::unpack(&input).unwrap();
+        println!("hello");
     }
 }
