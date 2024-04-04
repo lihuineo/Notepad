@@ -1,4 +1,4 @@
-workspace = { members = ["tests"] }
+submodule_name = { path = "tests" }
 [package]
 name = "notepad"
 version = "0.1.0"

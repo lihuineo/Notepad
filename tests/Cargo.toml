@@ -7,3 +7,4 @@ edition = "2021"
 
 [dependencies]
 solana-program = "=1.18.7"
+borsh = "1.4.0"

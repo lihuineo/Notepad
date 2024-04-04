@@ -364,15 +364,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "771fe0050b883fcc3ea2359b1a96bcfbc090b7116eae7c3c512c7a083fdf23d3"
 
 [[package]]
-name = "bs58"
-version = "0.5.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bf88ba1141d185c399bee5288d850d63b8369520c1eafc32a0430b5b6c287bf4"
-dependencies = [
- "tinyvec",
-]
-
-[[package]]
 name = "bumpalo"
 version = "3.15.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -848,16 +839,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "notepad"
-version = "0.1.0"
-dependencies = [
- "borsh 1.4.0",
- "bs58 0.5.1",
- "solana-program",
- "thiserror",
-]
-
-[[package]]
 name = "num-bigint"
 version = "0.4.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1257,7 +1238,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "90bc310416403e8bd4f10799d7736a3a17126b217236983a884f0e1989b93040"
 dependencies = [
  "block-buffer 0.10.4",
- "bs58 0.4.0",
+ "bs58",
  "bv",
  "either",
  "generic-array",
@@ -1304,7 +1285,7 @@ dependencies = [
  "borsh 0.10.3",
  "borsh 0.9.3",
  "borsh 1.4.0",
- "bs58 0.4.0",
+ "bs58",
  "bv",
  "bytemuck",
  "cc",
@@ -1348,7 +1329,7 @@ version = "1.18.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "457e23df0b7b859eba7b72bc525f63f3a415500fb0a17d554e5166378f4c9b4b"
 dependencies = [
- "bs58 0.4.0",
+ "bs58",
  "proc-macro2",
  "quote",
  "rustversion",
@@ -1393,6 +1374,13 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn 2.0.58",
+]
+
+[[package]]
+name = "tests"
+version = "0.1.0"
+dependencies = [
+ "solana-program",
 ]
 
 [[package]]
