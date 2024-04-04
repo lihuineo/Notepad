@@ -3,6 +3,7 @@ use solana_program::{
     account_info::{next_account_info, AccountInfo},
     borsh1::try_from_slice_unchecked,
     entrypoint::ProgramResult,
+    msg,
     program::invoke,
     pubkey::Pubkey,
     rent::Rent,
@@ -54,6 +55,8 @@ pub fn note_create(
     let rent = Rent::get()?;
     let rent_lamports = rent.minimum_balance(NotepadAccountState::MAX_SIZE);
 
+    msg!("rent_lamports: {:?}", rent_lamports);
+
     invoke(
         &system_instruction::create_account(
             from.key,
@@ -65,10 +68,11 @@ pub fn note_create(
         &[from.clone(), to.clone(), system_program.clone()],
     )?;
     let mut state = try_from_slice_unchecked::<NotepadAccountState>(&to.data.borrow()).unwrap();
+    msg!("to data: {:?}", to.data);
     state.pubkey = pubkey;
     state.title = title;
     state.body = body;
-    state.serialize(&mut &mut from.data.borrow_mut()[..])?;
+    state.serialize(&mut &mut to.data.borrow_mut()[..])?;
     Ok(())
 }
 
