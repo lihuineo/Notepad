@@ -56,6 +56,8 @@ pub fn note_create(
     let rent_lamports = rent.minimum_balance(NotepadAccountState::MAX_SIZE);
 
     msg!("rent_lamports: {:?}", rent_lamports);
+    msg!("program_id: {:?}", program_id);
+    msg!("accounts: {:?}", accounts);
 
     invoke(
         &system_instruction::create_account(
@@ -65,7 +67,7 @@ pub fn note_create(
             NotepadAccountState::MAX_SIZE.try_into().unwrap(),
             program_id,
         ),
-        &[from.clone(), to.clone(), system_program.clone()],
+        accounts,
     )?;
     let mut state = try_from_slice_unchecked::<NotepadAccountState>(&to.data.borrow()).unwrap();
     msg!("to data: {:?}", to.data);

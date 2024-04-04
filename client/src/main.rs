@@ -1,12 +1,13 @@
+// const RPC_ADDR: &str = "https://api.devnet.solana.com";
 fn main() {
-    println!("Hello, world!");
+    println!("hello world");
 }
 
 #[cfg(test)]
 mod tests {
     use borsh::BorshSerialize;
     use program::instruction::NotepadInstructionPayload;
-    use solana_program::{instruction, pubkey};
+    use solana_program::{instruction, pubkey, system_program};
     use solana_rpc_client::rpc_client;
     use solana_sdk::{signature::Signer, signer::keypair, transaction};
     use std::str::FromStr;
@@ -17,7 +18,7 @@ mod tests {
     #[test]
     fn note_create_test() {
         let program_id =
-            pubkey::Pubkey::from_str("CpfNZzf12jZsevQci24LkQXsSEKjdrGpXKmz4H4wDyLE").unwrap();
+            pubkey::Pubkey::from_str("AbdnKssbrUFyFuZoitgRRW7inA2MTecpwy2xZ3RFMzVh").unwrap();
         let payer =
         keypair::Keypair::from_base58_string("5JowcAzn1Kg2sw4WPCtTRuwVW1XMMDKoLx1Qj3Q6D39yThpHXr3Fhj7wPmbE22jqKDMqKgm36rdTYKgv1wkHbnWJ");
         let payee = keypair::Keypair::from_base58_string("4WyNHzz6x3YfNw3TYQi784f7JXkzc6DgNkdAynitDq62qnFZcEqHHZkmCQp4MsD2F1HUKTPMbzTLNkUJzcUm2knQ");
@@ -33,7 +34,7 @@ mod tests {
                 is_writable: true,
             },
             instruction::AccountMeta {
-                pubkey: program_id,
+                pubkey: system_program::ID,
                 is_signer: false,
                 is_writable: true,
             },
@@ -50,8 +51,8 @@ mod tests {
                 .unwrap(),
         };
         payload.serialize(&mut data).unwrap();
-
         let ins = instruction::Instruction::new_with_bytes(program_id, &data, accounts);
+        print!("{:?}", ins.accounts);
 
         let client = rpc_client::RpcClient::new(RPC_ADDR);
         let latest_blockhash = client.get_latest_blockhash().unwrap();
@@ -64,6 +65,7 @@ mod tests {
                 latest_blockhash,
             ))
             .unwrap();
+
         println!("tx:{}", tx);
     }
 }
