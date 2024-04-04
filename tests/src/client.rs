@@ -1,5 +1,5 @@
 #[cfg(test)]
-mod tests {
+mod client {
     use borsh::BorshSerialize;
     use notepad::instruction::NotepadInstructionPayload;
     use solana_program::{instruction, pubkey};
@@ -16,23 +16,22 @@ mod tests {
             pubkey::Pubkey::from_str("CpfNZzf12jZsevQci24LkQXsSEKjdrGpXKmz4H4wDyLE").unwrap();
         let payer =
         keypair::Keypair::from_base58_string("5JowcAzn1Kg2sw4WPCtTRuwVW1XMMDKoLx1Qj3Q6D39yThpHXr3Fhj7wPmbE22jqKDMqKgm36rdTYKgv1wkHbnWJ");
-        println!("pubkey: {}", payer.pubkey());
         let payee = keypair::Keypair::from_base58_string("4WyNHzz6x3YfNw3TYQi784f7JXkzc6DgNkdAynitDq62qnFZcEqHHZkmCQp4MsD2F1HUKTPMbzTLNkUJzcUm2knQ");
         let accounts = vec![
-            instruction::AccountMeta {
-                pubkey: payee.pubkey(),
-                is_signer: true,
-                is_writable: true,
-            },
             instruction::AccountMeta {
                 pubkey: payer.pubkey(),
                 is_signer: true,
                 is_writable: true,
             },
             instruction::AccountMeta {
+                pubkey: payee.pubkey(),
+                is_signer: true,
+                is_writable: true,
+            },
+            instruction::AccountMeta {
                 pubkey: program_id,
                 is_signer: false,
-                is_writable: false,
+                is_writable: true,
             },
         ];
 
