@@ -12,8 +12,7 @@ mod tests {
     use solana_sdk::{signature::Signer, signer::keypair, transaction};
     use std::str::FromStr;
 
-    const RPC_ADDR: &str = "https://neat-twilight-seed.solana-devnet.quiknode.pro/f5b58eab34b737385de4001f1eddd79b998e3e29/";
-    // const RPC_ADDR: &str = "https://api.devnet.solana.com";
+    const RPC_ADDR: &str = "https://api.devnet.solana.com";
 
     #[test]
     fn note_create_test() {
