@@ -5,12 +5,10 @@ use solana_program::pubkey::Pubkey;
 
 pub struct NotepadAccountState {
     pub pubkey: Pubkey,
-    pub title: String,
-    pub body: String,
+    pub contents: String,
 }
 
 impl NotepadAccountState {
-    pub const TITLE_MAX_SIZE: usize = 15;
-    pub const BODY_MAX_SIZE: usize = 200;
-    pub const MAX_SIZE: usize = Self::TITLE_MAX_SIZE + Self::BODY_MAX_SIZE + 32;
+    pub const CONTENTS_MAX_SIZE: usize = 200;
+    pub const MAX_SIZE: usize = Self::CONTENTS_MAX_SIZE + 15;
 }

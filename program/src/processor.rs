@@ -20,14 +20,10 @@ pub fn process_instruction(
 ) -> ProgramResult {
     let ins = NotepadInstruction::unpack(instruction_data)?;
     match ins {
-        NotepadInstruction::NoteCreate {
-            title,
-            body,
-            pubkey,
-        } => return note_create(program_id, accounts, title, body, pubkey),
-        NotepadInstruction::NoteUpdate { title, body } => {
-            note_update(program_id, accounts, title, body)
+        NotepadInstruction::NoteCreate { contents, pubkey } => {
+            return note_create(program_id, accounts, contents, pubkey)
         }
+        NotepadInstruction::NoteUpdate { contents } => note_update(program_id, accounts, contents),
         NotepadInstruction::NoteDelete => note_delete(program_id, accounts),
     }
 }
@@ -35,8 +31,7 @@ pub fn process_instruction(
 pub fn note_create(
     program_id: &Pubkey,
     accounts: &[AccountInfo],
-    title: String,
-    body: String,
+    contents: String,
     pubkey: Pubkey,
 ) -> ProgramResult {
     let account_info_iter = &mut accounts.iter();
@@ -44,12 +39,8 @@ pub fn note_create(
     let to = next_account_info(account_info_iter)?;
     let system_program = next_account_info(account_info_iter)?;
 
-    if title.len() > NotepadAccountState::TITLE_MAX_SIZE {
-        return Err(NotepadError::InvalidTitleLen.into());
-    }
-
-    if body.len() > NotepadAccountState::BODY_MAX_SIZE {
-        return Err(NotepadError::InvalidBodyLen.into());
+    if contents.len() > NotepadAccountState::CONTENTS_MAX_SIZE {
+        return Err(NotepadError::InvalidContentsLen.into());
     }
 
     let rent = Rent::get()?;
@@ -70,31 +61,20 @@ pub fn note_create(
         &[from.clone(), to.clone(), system_program.clone()],
     )?;
     let mut state = try_from_slice_unchecked::<NotepadAccountState>(&to.data.borrow()).unwrap();
-    msg!("to data: {:?}", to.data);
     state.pubkey = pubkey;
-    state.title = title;
-    state.body = body;
+    state.contents = contents;
     state.serialize(&mut &mut to.data.borrow_mut()[..])?;
-    
+
     Ok(())
 }
 
-pub fn note_update(
-    _: &Pubkey,
-    accounts: &[AccountInfo],
-    title: String,
-    body: String,
-) -> ProgramResult {
+pub fn note_update(_: &Pubkey, accounts: &[AccountInfo], contents: String) -> ProgramResult {
     let account_info_iter = &mut accounts.iter();
     let from = next_account_info(account_info_iter)?;
     let to = next_account_info(account_info_iter)?;
 
-    if title.len() > NotepadAccountState::TITLE_MAX_SIZE {
-        return Err(NotepadError::InvalidTitleLen.into());
-    }
-
-    if body.len() > NotepadAccountState::BODY_MAX_SIZE {
-        return Err(NotepadError::InvalidBodyLen.into());
+    if contents.len() > NotepadAccountState::CONTENTS_MAX_SIZE {
+        return Err(NotepadError::InvalidContentsLen.into());
     }
 
     let mut state = try_from_slice_unchecked::<NotepadAccountState>(&to.data.borrow()).unwrap();
@@ -103,8 +83,7 @@ pub fn note_update(
         return Err(NotepadError::InvalidPubkey.into());
     }
 
-    state.title = title;
-    state.body = body;
+    state.contents = contents;
     state.serialize(&mut &mut to.data.borrow_mut()[..])?;
 
     Ok(())

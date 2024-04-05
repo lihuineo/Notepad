@@ -3,24 +3,16 @@ use solana_program::{program_error::ProgramError, pubkey::Pubkey};
 
 #[derive(BorshDeserialize, BorshSerialize)]
 pub struct NotepadInstructionPayload {
-    pub title: String,
-    pub body: String,
-    pub pubkey: Pubkey,
+    pub contents: String, //文本内容
+    pub pubkey: Pubkey,   //文本权限
 }
 
 impl NotepadInstructionPayload {}
 
 #[derive(BorshDeserialize, BorshSerialize)]
 pub enum NotepadInstruction {
-    NoteCreate {
-        title: String,
-        body: String,
-        pubkey: Pubkey,
-    },
-    NoteUpdate {
-        title: String,
-        body: String,
-    },
+    NoteCreate { contents: String, pubkey: Pubkey },
+    NoteUpdate { contents: String },
     NoteDelete,
 }
 
@@ -33,16 +25,14 @@ impl NotepadInstruction {
             0 => {
                 let payload = NotepadInstructionPayload::try_from_slice(rest).unwrap();
                 Self::NoteCreate {
-                    title: payload.title,
-                    body: payload.body,
+                    contents: payload.contents,
                     pubkey: payload.pubkey,
                 }
             }
             1 => {
                 let payload = NotepadInstructionPayload::try_from_slice(rest).unwrap();
                 Self::NoteUpdate {
-                    title: payload.title,
-                    body: payload.body,
+                    contents: payload.contents,
                 }
             }
             2 => Self::NoteDelete,

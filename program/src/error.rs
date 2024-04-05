@@ -4,12 +4,10 @@ use thiserror::Error;
 #[derive(Debug, Error)]
 
 pub enum NotepadError {
-    #[error("Notepad: input title exceeds max len!")]
-    InvalidTitleLen,
-    #[error("Notepad: input body exceeds max len!")]
-    InvalidBodyLen,
+    #[error("Notepad: input contents exceeds max len!")]
+    InvalidContentsLen, //超出文本长度错误
     #[error("Notepad: invalid public key!")]
-    InvalidPubkey,
+    InvalidPubkey, //权限错误
 }
 
 impl From<NotepadError> for ProgramError {

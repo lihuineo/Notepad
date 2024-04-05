@@ -47,9 +47,8 @@ mod tests {
         data.push(tag);
 
         let payload = NotepadInstructionPayload {
-            title: String::from("Hi new world."),
-            body: String::from("This is my first note."),
-            pubkey: payer.pubkey(),
+            contents: String::from("Hello new world. This is my first note."),
+            pubkey: note.pubkey(),
         };
         payload.serialize(&mut data).unwrap();
         let ins = instruction::Instruction::new_with_bytes(program_id, &data, accounts);
@@ -96,8 +95,7 @@ mod tests {
         data.push(tag);
 
         let payload = NotepadInstructionPayload {
-            title: String::from("do update"),
-            body: String::from("update my note."),
+            contents: String::from("update my note."),
             pubkey: payer.pubkey(),
         };
         payload.serialize(&mut data).unwrap();
