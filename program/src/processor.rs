@@ -104,7 +104,7 @@ pub fn note_update(
 
     state.title = title;
     state.body = body;
-    state.serialize(&mut &mut from.data.borrow_mut()[..])?;
+    state.serialize(&mut &mut to.data.borrow_mut()[..])?;
     Ok(())
 }
 
