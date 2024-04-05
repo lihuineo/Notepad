@@ -96,13 +96,54 @@ mod tests {
         data.push(tag);
 
         let payload = NotepadInstructionPayload {
-            title: String::from("update ins"),
+            title: String::from("do update"),
             body: String::from("update my note."),
             pubkey: payer.pubkey(),
         };
         payload.serialize(&mut data).unwrap();
         let ins = instruction::Instruction::new_with_bytes(program_id, &data, accounts);
         print!("{:?}", ins.accounts);
+
+        let client = rpc_client::RpcClient::new(RPC_ADDR);
+        let latest_blockhash = client.get_latest_blockhash().unwrap();
+
+        let tx = client
+            .send_and_confirm_transaction(&transaction::Transaction::new_signed_with_payer(
+                &vec![ins],
+                Some(&payer.pubkey()),
+                &[&payer, &note],
+                latest_blockhash,
+            ))
+            .unwrap();
+
+        println!("tx:{}", tx);
+    }
+
+    #[test]
+    fn note_delete_test() {
+        let program_id =
+            pubkey::Pubkey::from_str("6yAWkkNFf51mNKBANvGekWv6SXx7KwLuGgTrHdHQ27b5").unwrap();
+        let payer =
+        keypair::Keypair::from_base58_string("5JowcAzn1Kg2sw4WPCtTRuwVW1XMMDKoLx1Qj3Q6D39yThpHXr3Fhj7wPmbE22jqKDMqKgm36rdTYKgv1wkHbnWJ");
+        let note = keypair::Keypair::from_base58_string("27WXq48JojNdFufk1yeDPeHPG78tdtzSLyHJFjQjUdykVDCQ261PZEvJwajXDwXGfzspDjxLAhG8GezqcYQe6CNp");
+
+        let accounts = vec![
+            instruction::AccountMeta {
+                pubkey: payer.pubkey(),
+                is_signer: true,
+                is_writable: true,
+            },
+            instruction::AccountMeta {
+                pubkey: note.pubkey(),
+                is_signer: true,
+                is_writable: true,
+            },
+        ];
+
+        let mut data: Vec<u8> = Vec::new();
+        let tag = 2u8;
+        data.push(tag);
+        let ins = instruction::Instruction::new_with_bytes(program_id, &data, accounts);
 
         let client = rpc_client::RpcClient::new(RPC_ADDR);
         let latest_blockhash = client.get_latest_blockhash().unwrap();

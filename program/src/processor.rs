@@ -75,6 +75,7 @@ pub fn note_create(
     state.title = title;
     state.body = body;
     state.serialize(&mut &mut to.data.borrow_mut()[..])?;
+    
     Ok(())
 }
 
@@ -105,6 +106,7 @@ pub fn note_update(
     state.title = title;
     state.body = body;
     state.serialize(&mut &mut to.data.borrow_mut()[..])?;
+
     Ok(())
 }
 
