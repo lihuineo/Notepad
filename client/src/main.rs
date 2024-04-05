@@ -21,7 +21,8 @@ mod tests {
             pubkey::Pubkey::from_str("AbdnKssbrUFyFuZoitgRRW7inA2MTecpwy2xZ3RFMzVh").unwrap();
         let payer =
         keypair::Keypair::from_base58_string("5JowcAzn1Kg2sw4WPCtTRuwVW1XMMDKoLx1Qj3Q6D39yThpHXr3Fhj7wPmbE22jqKDMqKgm36rdTYKgv1wkHbnWJ");
-        let payee = keypair::Keypair::from_base58_string("4WyNHzz6x3YfNw3TYQi784f7JXkzc6DgNkdAynitDq62qnFZcEqHHZkmCQp4MsD2F1HUKTPMbzTLNkUJzcUm2knQ");
+        // let payee = keypair::Keypair::from_base58_string("4WyNHzz6x3YfNw3TYQi784f7JXkzc6DgNkdAynitDq62qnFZcEqHHZkmCQp4MsD2F1HUKTPMbzTLNkUJzcUm2knQ");
+        let noter = keypair::Keypair::new();
         let accounts = vec![
             instruction::AccountMeta {
                 pubkey: payer.pubkey(),
@@ -29,7 +30,7 @@ mod tests {
                 is_writable: true,
             },
             instruction::AccountMeta {
-                pubkey: payee.pubkey(),
+                pubkey: noter.pubkey(),
                 is_signer: true,
                 is_writable: true,
             },
@@ -61,7 +62,7 @@ mod tests {
             .send_and_confirm_transaction(&transaction::Transaction::new_signed_with_payer(
                 &vec![ins],
                 Some(&payer.pubkey()),
-                &[&payer, &payee],
+                &[&payer, &noter],
                 latest_blockhash,
             ))
             .unwrap();
