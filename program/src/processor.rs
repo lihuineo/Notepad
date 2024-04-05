@@ -67,7 +67,7 @@ pub fn note_create(
             NotepadAccountState::MAX_SIZE.try_into().unwrap(),
             program_id,
         ),
-        accounts,
+        &[from.clone(), to.clone(), system_program.clone()],
     )?;
     let mut state = try_from_slice_unchecked::<NotepadAccountState>(&to.data.borrow()).unwrap();
     msg!("to data: {:?}", to.data);
