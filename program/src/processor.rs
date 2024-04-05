@@ -60,10 +60,24 @@ pub fn note_create(
         ),
         &[from.clone(), to.clone(), system_program.clone()],
     )?;
+
     let mut state = try_from_slice_unchecked::<NotepadAccountState>(&to.data.borrow()).unwrap();
+    msg!(
+        "note create: 状态创建前 pubkey: {:?} contents: {:?}",
+        state.pubkey,
+        state.contents
+    );
+
     state.pubkey = pubkey;
     state.contents = contents;
     state.serialize(&mut &mut to.data.borrow_mut()[..])?;
+
+    let new_state = try_from_slice_unchecked::<NotepadAccountState>(&to.data.borrow()).unwrap();
+    msg!(
+        "note create: 状态创建后 pubkey: {:?} contents: {:?}",
+        new_state.pubkey,
+        new_state.contents
+    );
 
     Ok(())
 }
@@ -78,6 +92,11 @@ pub fn note_update(_: &Pubkey, accounts: &[AccountInfo], contents: String) -> Pr
     }
 
     let mut state = try_from_slice_unchecked::<NotepadAccountState>(&to.data.borrow()).unwrap();
+    msg!(
+        "note update: 状态更新前 pubkey: {:?} contents: {:?}",
+        state.pubkey,
+        state.contents
+    );
 
     if *from.key != state.pubkey {
         return Err(NotepadError::InvalidPubkey.into());
@@ -85,6 +104,13 @@ pub fn note_update(_: &Pubkey, accounts: &[AccountInfo], contents: String) -> Pr
 
     state.contents = contents;
     state.serialize(&mut &mut to.data.borrow_mut()[..])?;
+
+    let new_state = try_from_slice_unchecked::<NotepadAccountState>(&to.data.borrow()).unwrap();
+    msg!(
+        "note update: 状态更新后 pubkey: {:?} contents: {:?}",
+        new_state.pubkey,
+        new_state.contents
+    );
 
     Ok(())
 }
@@ -95,6 +121,11 @@ pub fn note_delete(_: &Pubkey, accounts: &[AccountInfo]) -> ProgramResult {
     let to = next_account_info(account_info_iter)?;
 
     let state = try_from_slice_unchecked::<NotepadAccountState>(&to.data.borrow()).unwrap();
+    msg!(
+        "note delete: 状态删除前 pubkey: {:?} contents: {:?}",
+        state.pubkey,
+        state.contents
+    );
 
     if *from.key != state.pubkey {
         return Err(NotepadError::InvalidPubkey.into());
@@ -105,6 +136,13 @@ pub fn note_delete(_: &Pubkey, accounts: &[AccountInfo]) -> ProgramResult {
     **to.lamports.borrow_mut() = 0;
     let mut to_data = to.data.borrow_mut();
     to_data.fill(0);
+
+    let new_state = try_from_slice_unchecked::<NotepadAccountState>(&to.data.borrow()).unwrap();
+    msg!(
+        "note delete: 状态删除后 pubkey: {:?} contents: {:?}",
+        new_state.pubkey,
+        new_state.contents
+    );
 
     Ok(())
 }

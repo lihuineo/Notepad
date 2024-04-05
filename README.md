@@ -19,4 +19,14 @@ lib.rs依次对记事本功能进行单元测试
 二、实现结果截图展示  
 1.智能合约编译及部署  
 2.基本功能验证：账户创建、更新、删除  
+笔记创建  
+https://solscan.io/tx/3aw7gaRpGj2z2UMfKENzfiMkBGFp8NPZTSx4A1GLRP2jRZ5dCvu9TVQeGyingJvhjhnhmoDyU2mojUR8Mn7tFnUq?cluster=devnet
+
+笔记更新
+https://solscan.io/tx/2TJTkMBKDFShmFNTEibskdvHVzKyrVhoW61dvxxJHf1iAugmzTZwZK5rg2yVbRr6sRyvRKj9JBuFred76ZTah1c3?cluster=devnet
+
+笔记删除
 3.异常情况（内容长度超限、权限不匹配）的验证  
+权限不匹配
+
+内容长度超限
