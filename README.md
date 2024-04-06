@@ -18,15 +18,29 @@ lib.rs依次对记事本功能进行单元测试。基本创建、更新、删�
 
 二、实现结果截图展示  
 1.智能合约编译及部署  
+<img width="1493" alt="合约编译" src="https://github.com/lihuineo/Notepad/assets/161575076/d19b2a12-9d06-4c5c-ace4-66225216b547">
+<img width="1445" alt="合约部署" src="https://github.com/lihuineo/Notepad/assets/161575076/b7bc8677-3110-4bb5-b580-3202d9d95286">
+
 2.基本功能验证：账户创建、更新、删除  
-笔记创建  
-https://solscan.io/tx/3aw7gaRpGj2z2UMfKENzfiMkBGFp8NPZTSx4A1GLRP2jRZ5dCvu9TVQeGyingJvhjhnhmoDyU2mojUR8Mn7tFnUq?cluster=devnet
+笔记创建
+https://solscan.io/tx/4JLZcJHNFQ4WhuMRKKA7obxVsFLfoaRj2SPBQWosZZqMWfQpGJCmswgwJ6SaruLJoFDfpddXqTsvFbL2yKVznhkK?cluster=devnet
+<img width="1395" alt="笔记创建-指令" src="https://github.com/lihuineo/Notepad/assets/161575076/74239cec-b8a2-4728-8162-1a90024023ac">
+<img width="1395" alt="笔记创建-内容" src="https://github.com/lihuineo/Notepad/assets/161575076/2e1815f0-fb74-4f17-bcaf-3c9957ead810">
+
 
 笔记更新
-https://solscan.io/tx/2TJTkMBKDFShmFNTEibskdvHVzKyrVhoW61dvxxJHf1iAugmzTZwZK5rg2yVbRr6sRyvRKj9JBuFred76ZTah1c3?cluster=devnet
+https://solscan.io/tx/67Sn3jz5PSd7W2Xkw31WeXFRgWU8jBBxBZn9s3ow4afMASjaCQVrRFmLepa8pKrGJjvkKuk6rjkhgkd3wcSphnd3?cluster=devnet
+<img width="1418" alt="笔记更新-详情" src="https://github.com/lihuineo/Notepad/assets/161575076/18faf7cd-8246-456a-bc90-e4b907e1c450">
+<img width="1399" alt="笔记更新-内容" src="https://github.com/lihuineo/Notepad/assets/161575076/b7280a48-ee51-4ed8-8166-2b4afd10ed32">
 
-笔记删除
+笔记删除  
+https://solscan.io/tx/67Sn3jz5PSd7W2Xkw31WeXFRgWU8jBBxBZn9s3ow4afMASjaCQVrRFmLepa8pKrGJjvkKuk6rjkhgkd3wcSphnd3?cluster=devnet
+<img width="1395" alt="笔记删除-指令" src="https://github.com/lihuineo/Notepad/assets/161575076/71f79a3c-f0c3-4aa4-87a0-00497495ddfb">
+<img width="1399" alt="笔记更新-内容" src="https://github.com/lihuineo/Notepad/assets/161575076/5b0cc0e2-3967-4636-b5f8-2cdfabad7985">
+
 3.异常情况（内容长度超限、权限不匹配）的验证，以及自定义日志展示
 权限不匹配
+<img width="1434" alt="权限异常测试" src="https://github.com/lihuineo/Notepad/assets/161575076/7a64d667-8c76-47ac-8fd8-b7ee5397ebbb">
 
 内容长度超限
+<img width="1450" alt="输入异常测试" src="https://github.com/lihuineo/Notepad/assets/161575076/1309a106-3747-4758-a1e7-1a575bb05b7c">
