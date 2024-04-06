@@ -40,7 +40,7 @@ https://solscan.io/tx/67Sn3jz5PSd7W2Xkw31WeXFRgWU8jBBxBZn9s3ow4afMASjaCQVrRFmLep
 笔记删除  
 https://solscan.io/tx/67Sn3jz5PSd7W2Xkw31WeXFRgWU8jBBxBZn9s3ow4afMASjaCQVrRFmLepa8pKrGJjvkKuk6rjkhgkd3wcSphnd3?cluster=devnet
 <img width="1395" alt="笔记删除-指令" src="https://github.com/lihuineo/Notepad/assets/161575076/71f79a3c-f0c3-4aa4-87a0-00497495ddfb">
-<img width="1398" alt="笔记删除-内容" src="https://github.com/lihuineo/Notepad/assets/161575076/90901fa8-d2af-4e2a-9061-cc421cd2aee4">
+<img width="1432" alt="笔记删除-内容" src="https://github.com/lihuineo/Notepad/assets/161575076/e4cbc888-0d05-488a-8218-03f1186419ba">
 
 
 3.异常情况（内容长度超限、权限不匹配）的验证，以及自定义日志展示  
