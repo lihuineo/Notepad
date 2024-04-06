@@ -2033,6 +2033,8 @@ version = "0.1.0"
 dependencies = [
  "borsh 1.4.0",
  "bs58 0.5.1",
+ "num-derive 0.4.2",
+ "num-traits",
  "solana-program",
  "thiserror",
 ]

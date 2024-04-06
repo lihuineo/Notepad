@@ -9,6 +9,6 @@ pub struct NotepadAccountState {
 }
 
 impl NotepadAccountState {
-    pub const CONTENTS_MAX_SIZE: usize = 200;
+    pub const CONTENTS_MAX_SIZE: usize = 50;
     pub const MAX_SIZE: usize = Self::CONTENTS_MAX_SIZE + 15;
 }

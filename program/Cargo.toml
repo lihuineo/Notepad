@@ -8,6 +8,8 @@ edition = "2021"
 [dependencies]
 borsh = "1.4.0"
 bs58 = "0.5.1"
+num-derive = "0.4.2"
+num-traits = "0.2.18"
 solana-program = "=1.18.7"
 thiserror = "1.0.58"
 

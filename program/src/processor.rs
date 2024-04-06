@@ -40,6 +40,7 @@ pub fn note_create(
     let system_program = next_account_info(account_info_iter)?;
 
     if contents.len() > NotepadAccountState::CONTENTS_MAX_SIZE {
+        msg!("Error: input contents exceeds max len!");
         return Err(NotepadError::InvalidContentsLen.into());
     }
 
@@ -87,7 +88,9 @@ pub fn note_update(_: &Pubkey, accounts: &[AccountInfo], contents: String) -> Pr
     let from = next_account_info(account_info_iter)?;
     let to = next_account_info(account_info_iter)?;
 
+    msg!("contents len: {}", contents.len());
     if contents.len() > NotepadAccountState::CONTENTS_MAX_SIZE {
+        msg!("Error: input contents exceeds max len!");
         return Err(NotepadError::InvalidContentsLen.into());
     }
 
@@ -99,6 +102,7 @@ pub fn note_update(_: &Pubkey, accounts: &[AccountInfo], contents: String) -> Pr
     );
 
     if *from.key != state.pubkey {
+        msg!("Error: input invalid public key!");
         return Err(NotepadError::InvalidPubkey.into());
     }
 
@@ -128,6 +132,7 @@ pub fn note_delete(_: &Pubkey, accounts: &[AccountInfo]) -> ProgramResult {
     );
 
     if *from.key != state.pubkey {
+        msg!("Error: input invalid public key!");
         return Err(NotepadError::InvalidPubkey.into());
     }
 
