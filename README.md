@@ -27,7 +27,6 @@ https://solscan.io/tx/4JLZcJHNFQ4WhuMRKKA7obxVsFLfoaRj2SPBQWosZZqMWfQpGJCmswgwJ6
 <img width="1395" alt="笔记创建-指令" src="https://github.com/lihuineo/Notepad/assets/161575076/74239cec-b8a2-4728-8162-1a90024023ac">
 <img width="1395" alt="笔记创建-内容" src="https://github.com/lihuineo/Notepad/assets/161575076/2e1815f0-fb74-4f17-bcaf-3c9957ead810">
 
-
 笔记更新
 https://solscan.io/tx/67Sn3jz5PSd7W2Xkw31WeXFRgWU8jBBxBZn9s3ow4afMASjaCQVrRFmLepa8pKrGJjvkKuk6rjkhgkd3wcSphnd3?cluster=devnet
 <img width="1418" alt="笔记更新-详情" src="https://github.com/lihuineo/Notepad/assets/161575076/18faf7cd-8246-456a-bc90-e4b907e1c450">
@@ -36,9 +35,10 @@ https://solscan.io/tx/67Sn3jz5PSd7W2Xkw31WeXFRgWU8jBBxBZn9s3ow4afMASjaCQVrRFmLep
 笔记删除  
 https://solscan.io/tx/67Sn3jz5PSd7W2Xkw31WeXFRgWU8jBBxBZn9s3ow4afMASjaCQVrRFmLepa8pKrGJjvkKuk6rjkhgkd3wcSphnd3?cluster=devnet
 <img width="1395" alt="笔记删除-指令" src="https://github.com/lihuineo/Notepad/assets/161575076/71f79a3c-f0c3-4aa4-87a0-00497495ddfb">
-<img width="1399" alt="笔记更新-内容" src="https://github.com/lihuineo/Notepad/assets/161575076/5b0cc0e2-3967-4636-b5f8-2cdfabad7985">
+<img width="1398" alt="笔记删除-内容" src="https://github.com/lihuineo/Notepad/assets/161575076/90901fa8-d2af-4e2a-9061-cc421cd2aee4">
 
-3.异常情况（内容长度超限、权限不匹配）的验证，以及自定义日志展示
+
+3.异常情况（内容长度超限、权限不匹配）的验证，以及自定义日志展示  
 权限不匹配
 <img width="1434" alt="权限异常测试" src="https://github.com/lihuineo/Notepad/assets/161575076/7a64d667-8c76-47ac-8fd8-b7ee5397ebbb">
 
