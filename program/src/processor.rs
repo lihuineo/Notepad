@@ -142,7 +142,7 @@ pub fn note_delete(_: &Pubkey, accounts: &[AccountInfo]) -> ProgramResult {
     let mut to_data = to.data.borrow_mut();
     to_data.fill(0);
 
-    let new_state = try_from_slice_unchecked::<NotepadAccountState>(&to.data.borrow()).unwrap();
+    let new_state = try_from_slice_unchecked::<NotepadAccountState>(&to_data).unwrap();
     msg!(
         "note delete: 状态删除后 pubkey: {:?} contents: {:?}",
         new_state.pubkey,

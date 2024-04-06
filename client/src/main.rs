@@ -129,10 +129,10 @@ mod tests {
     #[test]
     fn note_delete_test() {
         let program_id =
-            pubkey::Pubkey::from_str("6kxMCGKMkX96nqL6L99uZCqXrvBMQuTAtWfs8dGG2smw").unwrap();
+            pubkey::Pubkey::from_str("38gB1TY5CsjJua8dd7VdwzAAxNCV1n7sugAcvvPJ1Ukz").unwrap();
         let payer =
                 keypair::Keypair::from_base58_string("5JowcAzn1Kg2sw4WPCtTRuwVW1XMMDKoLx1Qj3Q6D39yThpHXr3Fhj7wPmbE22jqKDMqKgm36rdTYKgv1wkHbnWJ");
-        let note = keypair::Keypair::from_base58_string("5STQAqjChyFhXRbeS55xX4fJ5XRCYuyesBr58nP8Mnu7tusHKPfowQ6nDctkFCExK3NLD3hCL3v2ApUUvUonpYnV");
+        let note = keypair::Keypair::from_base58_string("C4454d6a3coUscSxVqweNid92U7tNQyABUzCFnC5BEqzuoXQNi61gzwRN3YiDCDAsXQ6wdDzenkXty9yZSn7XPu");
 
         let accounts = vec![
             instruction::AccountMeta {
